@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnimalController;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::get('animals', [AnimalController::class, 'index'])->name('index');
+
+
+Route::get('animal/{id}', [AnimalController::class, 'show']);
+
+ 
+Route::post('animal', [AnimalController::class, 'store']);
+
+ 
+Route::put('animal/{id}', [AnimalController::class, 'update']);
+
+ 
+Route::delete('animal/{id}', [AnimalController::class,'destroy']);
